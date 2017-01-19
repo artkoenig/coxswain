@@ -15,24 +15,14 @@
  */
 package svenmeier.coxswain.gym;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by sven on 07.07.15.
  */
 public enum Difficulty {
     NONE, EASY, MEDIUM, HARD;
 
-    public Difficulty increase() {
-        Difficulty[] values = values();
-
-        int next = ordinal() + 1;
-        if (next == 4) {
-            // never NONE
-            next = 1;
-        }
-
-        return values[next];
+	public Difficulty increase() {
+		Difficulty[] values = values();
+		return values[(ordinal() + 1) % values().length];
     }
 }
