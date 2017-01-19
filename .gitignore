@@ -6,3 +6,8 @@
 .DS_Store
 /build
 /captures
+propoid-core
+propoid-db
+propoid-ui
+propoid-util
+propoid-validation

@@ -1,10 +1,10 @@
-<ListView
+<svenmeier.coxswain.view.NestedScrollingListView
+    android:id="@+id/workouts"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
-    android:id="@+id/workouts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:choiceMode="singleChoice"
+    tools:context=".MainActivity"
     >
-</ListView>
+</svenmeier.coxswain.view.NestedScrollingListView>

@@ -4,11 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/coxswain.iml" filepath="$PROJECT_DIR$/coxswain.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../propoid/propoid-core/propoid-core.iml" filepath="$PROJECT_DIR$/../propoid/propoid-core/propoid-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../propoid/propoid-db/propoid-db.iml" filepath="$PROJECT_DIR$/../propoid/propoid-db/propoid-db.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../propoid/propoid-ui/propoid-ui.iml" filepath="$PROJECT_DIR$/../propoid/propoid-ui/propoid-ui.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../propoid/propoid-util/propoid-util.iml" filepath="$PROJECT_DIR$/../propoid/propoid-util/propoid-util.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../propoid/propoid-validation/propoid-validation.iml" filepath="$PROJECT_DIR$/../propoid/propoid-validation/propoid-validation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/propoid-core/propoid-core.iml" filepath="$PROJECT_DIR$/propoid-core/propoid-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/propoid-db/propoid-db.iml" filepath="$PROJECT_DIR$/propoid-db/propoid-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/propoid-ui/propoid-ui.iml" filepath="$PROJECT_DIR$/propoid-ui/propoid-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/propoid-util/propoid-util.iml" filepath="$PROJECT_DIR$/propoid-util/propoid-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/propoid-validation/propoid-validation.iml" filepath="$PROJECT_DIR$/propoid-validation/propoid-validation.iml" />
     </modules>
   </component>
 </project>

@@ -1,13 +1,26 @@
 <resources>
-
-    <style name="LightTheme" parent="@android:style/Theme.Holo.Light">
+    <style name="LightTheme" parent="Base.Theme.AppCompat.Light">
         <item name="icon_more">@drawable/ic_more_vert_black_24dp</item>
         <item name="icon_share">@drawable/ic_share_black_24dp</item>
+		<item name="colorPrimaryDark">@color/primary_dark</item>
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorAccent">@color/accent</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="windowActionBar">false</item>
+		<item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>
+		<item name="windowNoTitle">true</item>
     </style>
 
-    <style name="DarkTheme" parent="@android:style/Theme.Holo">
+	<style name="DarkTheme" parent="Base.Theme.AppCompat">
         <item name="icon_more">@drawable/ic_more_vert_white_24dp</item>
         <item name="icon_share">@drawable/ic_share_white_24dp</item>
+		<item name="colorPrimaryDark">@color/primary_dark</item>
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorAccent">@color/accent</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="windowActionBar">false</item>
+		<item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>
+		<item name="windowNoTitle">true</item>
     </style>
 
     <style name="TimelineView">
@@ -28,7 +41,7 @@
     </style>
 
     <style name="LabelView">
-        <item name="text_color">?android:attr/colorForeground</item>
+        <item name="text_color">?android:attr/textColorPrimary</item>
     </style>
 
     <style name="ValueView" parent="LabelView">

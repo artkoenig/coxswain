@@ -1,10 +1,37 @@
-<ListView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
-    android:id="@+id/program_segments"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:choiceMode="singleChoice"
-    >
-</ListView>
+
+<android.support.design.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:background="@android:color/background_light">
+
+	<android.support.design.widget.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/edit_toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			app:layout_scrollFlags="scroll|enterAlways"
+			app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+			app:title="@string/edit_program"/>
+
+	</android.support.design.widget.AppBarLayout>
+
+
+	<svenmeier.coxswain.view.NestedScrollingListView
+		android:id="@+id/program_segments"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:choiceMode="singleChoice"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"
+		tools:context=".MainActivity">
+	</svenmeier.coxswain.view.NestedScrollingListView>
+
+</android.support.design.widget.CoordinatorLayout>
+

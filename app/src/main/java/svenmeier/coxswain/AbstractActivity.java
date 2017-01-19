@@ -15,16 +15,14 @@
  */
 package svenmeier.coxswain;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import propoid.util.content.Preference;
 
 
-public class AbstractActivity extends Activity {
+public class AbstractActivity extends AppCompatActivity {
 
     protected Preference<Boolean> theme;
 

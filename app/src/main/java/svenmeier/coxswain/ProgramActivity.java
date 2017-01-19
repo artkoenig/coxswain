@@ -18,6 +18,7 @@ package svenmeier.coxswain;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -38,49 +39,6 @@ import svenmeier.coxswain.view.BindingView;
 
 
 public class ProgramActivity extends AbstractActivity implements AbstractValueFragment.Callback {
-
-    private Gym gym;
-
-    private ListView segmentsView;
-    private SegmentsAdapter segmentsAdapter;
-
-    private Program program;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        gym = Gym.instance(this);
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        setContentView(R.layout.layout_program);
-
-        segmentsView = (ListView) findViewById(R.id.program_segments);
-
-        Reference<Program> reference = Reference.from(getIntent());
-
-        program = gym.getProgram(reference);
-        if (program == null) {
-            finish();
-        } else {
-            segmentsAdapter = new SegmentsAdapter();
-            segmentsAdapter.install(segmentsView);
-
-            setTitle(program.name.get());
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     private class SegmentsAdapter extends GenericAdapter<Segment> {
 
@@ -199,6 +157,56 @@ public class ProgramActivity extends AbstractActivity implements AbstractValueFr
             });
         }
     }
+    private Gym gym;
+    private ListView segmentsView;
+    private SegmentsAdapter segmentsAdapter;
+    private Program program;
+
+    public static Intent createIntent(Context context, Program program) {
+        Intent intent = new Intent(context, ProgramActivity.class);
+
+        intent.setData(new Reference<Program>(program).toUri());
+
+        return intent;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        gym = Gym.instance(this);
+
+        setContentView(R.layout.layout_program);
+
+		Toolbar toolbar = (Toolbar) findViewById(R.id.edit_toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        segmentsView = (ListView) findViewById(R.id.program_segments);
+
+        Reference<Program> reference = Reference.from(getIntent());
+
+        program = gym.getProgram(reference);
+        if (program == null) {
+            finish();
+        } else {
+            segmentsAdapter = new SegmentsAdapter();
+            segmentsAdapter.install(segmentsView);
+
+            setTitle(program.name.get());
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     public Segment getSegment() {
@@ -209,13 +217,5 @@ public class ProgramActivity extends AbstractActivity implements AbstractValueFr
         Gym.instance(this).mergeProgram(program);
 
         segmentsAdapter.notifyChanged();
-    }
-
-    public static Intent createIntent(Context context, Program program) {
-        Intent intent = new Intent(context, ProgramActivity.class);
-
-        intent.setData(new Reference<Program>(program).toUri());
-
-        return intent;
     }
 }

@@ -21,8 +21,11 @@ import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,20 +41,49 @@ import svenmeier.coxswain.view.ProgramsFragment;
 import svenmeier.coxswain.view.WorkoutsFragment;
 
 
-public class MainActivity extends AbstractActivity {
+public class MainActivity extends AppCompatActivity {
 
     public static String TAG = "coxswain";
 
+    private class MainAdapter extends FragmentStatePagerAdapter {
+
+        public MainAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            if (position == 0) {
+                return getString(R.string.programs);
+            } else if (position == 1) {
+                return getString(R.string.workouts);
+            } else {
+                return getString(R.string.performance);
+            }
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if (position == 0) {
+                return new ProgramsFragment();
+            } else if (position == 1) {
+                return new WorkoutsFragment();
+            } else {
+                return new PerformanceFragment();
+            }
+        }
+    }
     private Gym gym;
-
     private ViewPager pager;
-
+	private TabLayout tabLayout;
     private ViewGroup programView;
-
     private TextView programNameView;
-
     private TextView programCurrentView;
-
     private Gym.Listener listener;
 
     @Override
@@ -64,8 +96,14 @@ public class MainActivity extends AbstractActivity {
 
         onNewIntent(getIntent());
 
+		Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+		setSupportActionBar(toolbar);
+
         pager = (ViewPager) findViewById(R.id.main_pager);
         pager.setAdapter(new MainAdapter(getFragmentManager()));
+
+		tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+		tabLayout.setupWithViewPager(pager);
 
         programView = (ViewGroup) findViewById(R.id.main_program);
         programView.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +151,53 @@ public class MainActivity extends AbstractActivity {
         gym.removeListener(listener);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_programs, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        if (BuildConfig.DEBUG == false) {
+            menu.findItem(R.id.action_mock).setVisible(false);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_mock) {
+            if (MockRower.openMock == null) {
+                GymService.start(this, null);
+            } else {
+                MockRower.openMock.close();
+            }
+
+            return true;
+        } else if (id == R.id.action_settings) {
+            startActivity(SettingsActivity.createIntent(this));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        checkUsbDevice(intent);
+
+        new ImportIntention(this).onIntent(intent);
+
+        // consume intent
+        intent.setAction(null);
+    }
+
     private void updateProgram() {
         Program program = gym.program;
         if (program == null) {
@@ -158,86 +243,5 @@ public class MainActivity extends AbstractActivity {
         }
 
         return false;
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        checkUsbDevice(intent);
-
-        new ImportIntention(this).onIntent(intent);
-
-        // consume intent
-        intent.setAction(null);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_programs, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-
-        if (BuildConfig.DEBUG == false) {
-            menu.findItem(R.id.action_mock).setVisible(false);
-        }
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_mock) {
-            if (MockRower.openMock == null) {
-                GymService.start(this, null);
-            } else {
-                MockRower.openMock.close();
-            }
-
-            return true;
-        } else if (id == R.id.action_settings) {
-            startActivity(SettingsActivity.createIntent(this));
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private class MainAdapter extends FragmentStatePagerAdapter {
-
-        public MainAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            if (position == 0) {
-                return getString(R.string.programs);
-            } else if (position == 1) {
-                return getString(R.string.workouts);
-            } else {
-                return getString(R.string.performance);
-            }
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            if (position == 0) {
-                return new ProgramsFragment();
-            } else if (position == 1) {
-                return new WorkoutsFragment();
-            } else {
-                return new PerformanceFragment();
-            }
-        }
     }
 }
