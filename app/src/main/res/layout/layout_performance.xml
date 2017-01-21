@@ -1,18 +1,19 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+	android:orientation="vertical">
 
     <TextView
         android:id="@+id/performance_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         style="@style/TimelineTitle"/>
 
     <svenmeier.coxswain.view.TimelineView
         android:id="@+id/performance_timeline"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+		android:layout_weight="1"
         style="@style/TimelineView"/>
-</RelativeLayout>
+</LinearLayout>
