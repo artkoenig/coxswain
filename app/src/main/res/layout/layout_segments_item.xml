@@ -7,29 +7,29 @@
 
     <ImageButton
         android:id="@+id/segment_menu"
-        android:src="@drawable/ic_more_vert_black_24dp"
-        style="@style/MenuButton"
+		style="@style/MenuButton"
+		android:src="?attr/icon_more"
         />
 
     <svenmeier.coxswain.view.BindingView
         android:id="@+id/segments_item_target"
+        style="@style/BindingView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        style="@style/BindingView"
         />
 
     <svenmeier.coxswain.view.BindingView
         android:id="@+id/segments_item_limit"
+        style="@style/BindingView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        style="@style/BindingView"
         />
 
     <svenmeier.coxswain.view.LevelView
         android:id="@+id/segments_difficulty"
-        android:background="@drawable/segment"
         style="@style/MenuButton"
+        android:background="@drawable/segment"
     />
 </LinearLayout>

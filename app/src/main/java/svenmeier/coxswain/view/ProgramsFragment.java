@@ -18,13 +18,13 @@ package svenmeier.coxswain.view;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import propoid.ui.Index;
@@ -38,45 +38,6 @@ import svenmeier.coxswain.gym.Program;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class ProgramsFragment extends Fragment {
-
-    private Gym gym;
-
-    private ListView programsView;
-
-    private ProgramsAdapter adapter;
-
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        gym = Gym.instance(activity);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.layout_programs, container, false);
-
-        programsView = (ListView) root.findViewById(R.id.programs);
-        adapter = new ProgramsAdapter();
-        adapter.install(programsView);
-
-        return root;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        adapter.initLoader(0, this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        adapter.destroy(0, this);
-    }
 
     private class ProgramsAdapter extends MatchAdapter<Program> {
 
@@ -106,8 +67,7 @@ public class ProgramsFragment extends Fragment {
                     gym.deselect();
 
                     PopupMenu popup = new PopupMenu(getActivity(), menuButton);
-                    popup.getMenuInflater().inflate(R.menu.menu_programs_item, popup.getMenu());
-
+					popup.getMenuInflater().inflate(R.menu.menu_programs_item, popup.getMenu());
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()) {
@@ -147,8 +107,43 @@ public class ProgramsFragment extends Fragment {
             WorkoutActivity.start(getActivity());
         }
     }
+    private Gym gym;
+    private ListView programsView;
+    private ProgramsAdapter adapter;
 
     private static String asHoursMinutes(int seconds) {
         return String.format("%d:%02d", SECONDS.toHours(seconds), SECONDS.toMinutes(seconds) % 60);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        gym = Gym.instance(activity);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.layout_programs, container, false);
+
+        programsView = (ListView) root.findViewById(R.id.programs);
+        adapter = new ProgramsAdapter();
+        adapter.install(programsView);
+
+        return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        adapter.initLoader(0, this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        adapter.destroy(0, this);
     }
 }
