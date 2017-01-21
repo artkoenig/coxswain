@@ -24,8 +24,6 @@
 
 	<svenmeier.coxswain.view.NestedScrollingListView
 		android:id="@+id/program_segments"
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:choiceMode="singleChoice"

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+	android:orientation="horizontal"
     >
 
     <ImageButton
         android:id="@+id/program_menu"
-        android:src="?attr/icon_more"
         style="@style/MenuButton"
+        android:src="?attr/icon_more"
         />
 
     <LinearLayout
@@ -29,21 +29,17 @@
 
             <TextView
                 android:id="@+id/program_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="32dp"
-                android:text="Name"
-
                 android:layout_weight="1"
-                android:inputType="text"
-                />
+                android:textSize="32dp"
+                tools:text="Name"/>
             <TextView
                 android:id="@+id/program_duration"
-                android:layout_width="wrap_content"
+				android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:text="duration"
-                />
+                tools:text="duration"/>
         </LinearLayout>
 
         <svenmeier.coxswain.view.SegmentsView

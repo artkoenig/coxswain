@@ -1,5 +1,5 @@
 <resources>
-    <style name="LightTheme" parent="Base.Theme.AppCompat.Light">
+	<style name="LightTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <item name="icon_more">@drawable/ic_more_vert_black_24dp</item>
         <item name="icon_share">@drawable/ic_share_black_24dp</item>
 		<item name="colorPrimaryDark">@color/primary_dark</item>
@@ -21,7 +21,7 @@
 		<item name="windowActionBar">false</item>
 		<item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>
 		<item name="windowNoTitle">true</item>
-    </style>
+	</style>
 
     <style name="TimelineView">
         <item name="foreground_color">?android:attr/colorForeground</item>
