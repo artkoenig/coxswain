@@ -96,12 +96,14 @@
     <string name="sensors_heart_reading">Lese Puls-Sensor</string>
 
     <string name="ant_heart_dependency_not_installed">Ant+ ist nicht verfügbar</string>
+    <string name="ant_heart_searching">Suche Puls über Ant+ ...</string>
     <string name="ant_heart_not_found">Kein Puls über Ant+ gefunden</string>
     <string name="ant_heart_reading">Lese Puls über Ant+</string>
 
     <string name="bluetooth_heart_no_bluetooth">Kein Bluetooth verfügbar</string>
     <string name="bluetooth_heart_no_bluetooth_le">Kein Bluetooth LE verfügbar</string>
     <string name="bluetooth_heart_no_location">Standortdienste müssen zum Zugriff auf Bluetooth aktiviert sein</string>
+    <string name="bluetooth_heart_searching">Suche Puls über Bluetooth ...</string>
     <string name="bluetooth_heart_not_found">Kein Puls über Bluetooth gefunden</string>
     <string name="bluetooth_heart_reading">Lese Puls über Bluetooth</string>
 
@@ -109,6 +111,9 @@
     <string name="preference_theme_dark_summary">Dunkles Theme verwenden</string>
 
     <string name="preference_training_title">Training</string>
+
+    <string name="preference_weight_title">Körpergewicht</string>
+    <string name="preference_weight_summary">Energie für %s kg Körpergewicht anpassen</string>
 
     <string name="preference_split_distance_title">Split</string>
     <string name="preference_split_distance_summary">Zeit pro %s Meter</string>
